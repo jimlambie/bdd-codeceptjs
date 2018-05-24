@@ -1,0 +1,16 @@
+{
+  "name": "bdd-codeceptjs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "headerlinks_test.js",
+  "scripts": {
+    "test": "./node_modules/.bin/codeceptjs run --steps"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "codeceptjs": "^1.2.0",
+    "puppeteer": "^1.4.0"
+  }
+}

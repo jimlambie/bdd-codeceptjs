@@ -1,0 +1,19 @@
+{
+  "tests": "./*_test.js",
+  "timeout": 10000,
+  "output": "./output",
+  "helpers": {
+    "Puppeteer": {
+      "url": "https://dadi.cloud",
+      "show": true,
+      "waitForAction": 1000,
+      "windowSize": "1200x980"
+    }
+  },
+  "include": {
+    "I": "./steps_file.js"
+  },
+  "bootstrap": false,
+  "mocha": {},
+  "name": "codecept"
+}
