@@ -6,19 +6,41 @@
       "show": false,
       "restart": false,
       "waitForAction": 1000,
+      "keepBrowserState": true,
+      "uniqueScreenshotNames": "false",
       "windowSize": "1200x980",
       "chrome": {
         "args": [
           "--no-sandbox"
         ]
       }
+    },
+    "Mochawesome": {
+      "uniqueScreenshotNames": "false"
     }
   },
   "include": {
     "I": "./test/stepDefinitions/steps_file.js",
     "networkPage": "./test/pages/Network.js"
   },
-  "mocha": {},
+  "mocha": {
+    "reporterOptions": {
+      "codeceptjs-cli-reporter": {
+        "stdout": "-",
+        "options": {
+          "verbose": false,
+          "steps": true
+        }
+      },
+      "mochawesome": {
+        "stdout": "./test/output/console.log",
+        "options": {
+          "reportDir": "./test/output",
+          "reportFilename": "report"
+        }
+      }
+    }
+  },
   "bootstrap": false,
   "teardown": null,
   "hooks": [],

@@ -8,27 +8,28 @@ Before((I) => { // or Background
 Scenario('Check all Header Links are present', (I) => {
   I.seeElement(
     locate('a')
-    // .withAttr({ class: 'active' })
       .withText('Home')
       .inside(locate('nav')))
   I.seeElement(
     locate('a')
-    // .withAttr({ class: 'active' })
       .withText('Network')
       .inside(locate('nav')))
+
   I.seeElement(
     locate('a')
-    // .withAttr({ class: 'active' })
+      .withText('Jim')
+      .inside(locate('nav')))
+
+  I.seeElement(
+    locate('a')
       .withText('Web services')
       .inside(locate('nav')))
   I.seeElement(
     locate('a')
-    // .withAttr({ class: 'active' })
       .withText('Community')
       .inside(locate('nav')))
   I.seeElement(
     locate('a')
-    // .withAttr({ class: 'active' })
       .withText('Documentation')
       .inside(locate('nav')))
   I.seeElement(
