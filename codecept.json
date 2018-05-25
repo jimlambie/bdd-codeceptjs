@@ -1,19 +1,28 @@
 {
-  "tests": "./*_test.js",
-  "timeout": 10000,
-  "output": "./output",
+  "output": "./test/output",
   "helpers": {
     "Puppeteer": {
-      "url": "https://dadi.cloud",
-      "show": true,
+      "url": "http://52.214.26.93/en",
+      "show": false,
+      "restart": false,
       "waitForAction": 1000,
-      "windowSize": "1200x980"
+      "windowSize": "1200x980",
+      "chrome": {
+        "args": [
+          "--no-sandbox"
+        ]
+      }
     }
   },
   "include": {
-    "I": "./steps_file.js"
+    "I": "./test/stepDefinitions/steps_file.js",
+    "networkPage": "./test/pages/Network.js"
   },
-  "bootstrap": false,
   "mocha": {},
+  "bootstrap": false,
+  "teardown": null,
+  "hooks": [],
+  "tests": "./test/features/**/*_test.js",
+  "timeout": 10000,
   "name": "codecept"
 }
