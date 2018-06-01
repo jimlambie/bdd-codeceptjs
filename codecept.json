@@ -21,6 +21,8 @@
   },
   "include": {
     "I": "./test/stepDefinitions/steps_file.js",
+    "basePage": "./test/pages/Base.js",
+    "homePage": "./test/pages/Home.js",
     "networkPage": "./test/pages/Network.js"
   },
   "mocha": {
@@ -39,6 +41,12 @@
           "reportFilename": "report"
         }
       }
+    }
+  },
+  "multiple": {
+    "parallel": {
+      "chunks": 2,
+      "browsers": ["chrome"]
     }
   },
   "bootstrap": false,
