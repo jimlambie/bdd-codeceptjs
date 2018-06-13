@@ -8,7 +8,7 @@
       "waitForAction": 1000,
       "keepBrowserState": true,
       "uniqueScreenshotNames": "false",
-      "windowSize": "1200x980",
+      "windowSize": "1425x710",
       "chrome": {
         "args": [
           "--no-sandbox"
@@ -17,13 +17,18 @@
     },
     "Mochawesome": {
       "uniqueScreenshotNames": "false"
+    },
+    "MyHelper": {
+      "require": "./test/helpers/myhelper_helper.js"
     }
   },
   "include": {
     "I": "./test/stepDefinitions/steps_file.js",
     "basePage": "./test/pages/Base.js",
+    "communityPage": "./test/pages/Community.js",
     "homePage": "./test/pages/Home.js",
-    "networkPage": "./test/pages/Network.js"
+    "networkPage": "./test/pages/Network.js",
+    "tokenPage": "./test/pages/Token.js"
   },
   "mocha": {
     "reporterOptions": {
@@ -43,16 +48,18 @@
       }
     }
   },
-  "multiple": {
-    "parallel": {
-      "chunks": 2,
-      "browsers": ["chrome"]
-    }
-  },
   "bootstrap": false,
   "teardown": null,
   "hooks": [],
-  "tests": "./test/features/**/*_test.js",
+  "multiple": {
+    "parallel": {
+      "chunks": 2,
+      "browsers": [
+        "chrome"
+      ]
+    }
+  },
+  "tests": "./test/features/home_page/hp_latest_section_test.js",
   "timeout": 10000,
   "name": "codecept"
 }

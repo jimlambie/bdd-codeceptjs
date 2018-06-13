@@ -1,4 +1,3 @@
-
 Feature('Home Page - Latest  Section')
 
 Before((I, homePage) => { // or Background

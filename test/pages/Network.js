@@ -16,6 +16,7 @@ module.exports = {
     descriptionIcon: (locate('img').withAttr({ class: 'mb' }).inside(locate('header'))).as('Description Icon'),
     descriptionPlatformIntro: 'Platform introduction',
     descriptionTechRoadmap: 'Technology roadmap',
+    descriptionMasternode: 'Masternode system',
     contributeButton: (locate('a').withText('Contribute').as('Contribute Link')),
     howItWorksButton: (locate('a').withText('How it works').as('How It Works Link')),
     useCasesButton: (locate('a').withText('Use cases').as('Use Cases Link')),
@@ -65,6 +66,15 @@ module.exports = {
     I.click(this.locators.descriptionTechRoadmap)
     I.waitForText('Roadmap', 'h1')
     I.seeInTitle('Roadmap | DADI')
+  },
+
+  validateMasternode () {
+    I.click(this.locators.descriptionMasternode)
+    I.wait(2)
+    I.retry(3).switchToNextTab()
+    I.waitForText('Tokenomics deep dive')
+    I.seeInTitle('DADI / Tokenomics deep dive - Google Docs')
+    I.closeCurrentTab()
   },
 
   validateDescription () {

@@ -16,3 +16,7 @@ Scenario('Check Platform introduction link is visible and works correctly', (I, 
 Scenario('Check Technology roadmap link is visible and works correctly', (I, networkPage) => {
   networkPage.validateTechRoadmap()
 })
+
+Scenario('Check Masternode System link is visible and works correctly', (I, networkPage) => {
+  networkPage.validateMasternode()
+})

@@ -7,4 +7,4 @@ Before((I, networkPage) => { // or Background
 
 Scenario('Check all Social Media Links are present', (I, basePage) => {
   basePage.validateSocialMedia()
-})
+}).retry(3)
