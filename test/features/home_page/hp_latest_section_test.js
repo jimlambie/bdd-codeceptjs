@@ -4,6 +4,6 @@ Before((I, homePage) => { // or Background
   homePage.validatePage()
 })
 
-Scenario('Check Latest From DADI Section is visible', (I, homePage) => {
-  homePage.validateLatestSection()
+Scenario('Check Latest From DADI Section is visible', async (I, homePage) => {
+  await homePage.validateLatestSection()
 })

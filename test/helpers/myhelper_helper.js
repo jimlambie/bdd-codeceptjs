@@ -1,26 +1,12 @@
 
 'use strict'
 
-const assert = require('assert')
+const { expect } = require('chai')
 
 class MyHelper extends Helper {
-
-  // before/after hooks
-  _before () {
-    // remove if not used
-  }
-
-  _after () {
-    // remove if not used
-  }
-
-  // add custom methods here
-  // If you need to access other helpers
-  // use: this.helpers['helperName']
   seeNumberOfElementsBetween (elementCount, minimum, maximum) {
-    // assert.isAtLeast(elementCount, minimum, `Expected ${elementCount} to be at least ${minimum}`)
-    // assert.isAtMost(elementCount, maximum, `Expected ${elementCount} to be at most ${maximum}`)
-    return assert(true, elementCount >= minimum)
+    expect(elementCount >= minimum).to.be.true
+    expect(elementCount <= maximum).to.be.true
   }
 }
 

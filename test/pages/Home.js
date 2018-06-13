@@ -140,14 +140,12 @@ module.exports = {
     I.closeCurrentTab()
   },
 
-  validateLatestSection () {
+  async validateLatestSection () {
     I.scrollTo(this.locators.latestTitle)
     I.seeTextEquals('LATEST FROM DADI', this.locators.latestTitle)
-    I.grabNumberOfVisibleElements(this.locators.latestArticleBoxes).then(count => {
-      I.seeNumberOfElementsBetween(count, 200, 6)
-      console.log('\\o/')
-    })
-    // I.seeNumberOfElements(articleBoxes, 6)
+    let count = await I.grabNumberOfVisibleElements(this.locators.latestArticleBoxes)
+    await I.seeNumberOfElementsBetween(count, 200, 6)
+    console.log('\\o/')
     // I.seeNumberOfVisibleElements(this.locators.latestArticleBoxes, articleBoxes)
     // I.seeNumberOfVisibleElements(this.locators.latestArticleBoxBadges, 6)
     // I.seeNumberOfVisibleElements(this.locators.latestArticleBoxTitles, 6)
