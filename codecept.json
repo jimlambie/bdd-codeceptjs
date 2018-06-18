@@ -7,16 +7,14 @@
       "restart": false,
       "waitForAction": 1000,
       "keepBrowserState": true,
-      "uniqueScreenshotNames": "false",
+      "uniqueScreenshotNames": true,
+      "waitForTimeout": 15000,
       "windowSize": "1425x710",
       "chrome": {
         "args": [
           "--no-sandbox"
         ]
       }
-    },
-    "Mochawesome": {
-      "uniqueScreenshotNames": "false"
     },
     "MyHelper": {
       "require": "./test/helpers/myhelper_helper.js"
@@ -28,6 +26,8 @@
     "communityPage": "./test/pages/Community.js",
     "homePage": "./test/pages/Home.js",
     "networkPage": "./test/pages/Network.js",
+    "roadmapPage": "./test/pages/Roadmap.js",
+    "teamPage": "./test/pages/Team.js",
     "tokenPage": "./test/pages/Token.js"
   },
   "mocha": {
@@ -59,7 +59,7 @@
       ]
     }
   },
-  "tests": "./test/features/home_page/hp_latest_section_test.js",
+  "tests": "./test/features/**/*_test.js",
   "timeout": 10000,
   "name": "codecept"
 }

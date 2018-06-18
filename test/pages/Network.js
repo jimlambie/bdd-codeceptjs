@@ -52,7 +52,7 @@ module.exports = {
   },
 
   validatePage () {
-    I.amOnPage('/network')
+    I.amOnPage('/network/?cache=false')
     I.seeTitleEquals('Network | DADI')
   },
 

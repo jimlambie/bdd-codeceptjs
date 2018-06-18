@@ -4,7 +4,7 @@
   "description": "",
   "main": "headerlinks_test.js",
   "scripts": {
-    "test": "./node_modules/.bin/codeceptjs run --reporter mocha-multi"
+    "test": "./node_modules/.bin/codeceptjs run-multiple parallel --reporter mocha-multi --steps"
   },
   "keywords": [],
   "author": "",

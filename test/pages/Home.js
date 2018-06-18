@@ -1,7 +1,7 @@
 
 'use strict'
 
-const assert = require('chai').assert
+const { assert, expect } = require('chai')
 
 let I
 
@@ -40,7 +40,7 @@ module.exports = {
     thirdAboutBoxDesc: (locate('p').withText('Anyone with a laptop').inside(locate('div.col.w-1-3.pb')).as('Third Box Description')),
     trustedByBanner: (locate('div.pt.pb').first().inside(locate('#homeMain')).as('Trusted By Banner')),
     latestTitle: (locate('h3').withText('Latest').as('Latest Section')),
-    latestArticleBoxes: (locate('article').as('Article Boxes')),
+    latestArticleBoxes: (locate('article.box').as('Article Boxes')),
     latestArticleBoxBadges: (locate('div.badge').inside('article').as('Article Badges')),
     latestArticleBoxTitles: (locate('h2').inside('article').as('Article Titles')),
     latestArticleBoxDescs: (locate('p').inside('article').as('Article Descriptions')),
@@ -59,11 +59,23 @@ module.exports = {
     aboutTheNetwork: (locate('a').withText('About the network').as('About The Network Link')),
     webServicesTitle: (locate('h3').withText('Web services').as('Web Services Section')),
     webServicesBoxes: (locate('div.box').inside(locate('div.cols.cols--4.bs-cols--2')).as('Web Services Boxes')),
-    twitterTitle: (locate('h3').withText('Follow us on Twitter @DADI').as('Twitter Section'))
+    twitterTitle: (locate('h3').withText('Follow us on Twitter @DADI').as('Twitter Section')),
+    twitterPara: (locate('p.normal.read')),
+    firstArticleBox: (locate('article.box').first().as('First Article')),
+    shareButton: (locate('a').withText(' Share this article').as('Share Button')),
+    shareBox: (locate('#share').as('Share Box')),
+    facebookButton: (locate('a').withText('Facebook').as('Facebook Button')),
+    facebookHeader: (locate('#homelink').as('Facebook Header')),
+    linkedinButton: (locate('a').withText('Linkedin').as('LinkedIn Button')),
+    linkedinLogo: (locate('h2').withText('LinkedIn').as('LinedIn Logo')),
+    twitterButton: (locate('a').withText('Twitter').as('Twitter Button')),
+    twitterDesc: (locate('h2').withText('Share a link').as('Twitter Page Description')),
+    redditButton: (locate('a').withText('Reddit').as('Reddit Button')),
+    redditSignIn: (locate('h1').withText('Sign in').as('Reddit Sign In'))
   },
 
   validatePage () {
-    I.amOnPage('/')
+    I.amOnPage('/?cache=false')
     I.seeTitleEquals('Decentralized web services | DADI')
   },
 
@@ -135,7 +147,8 @@ module.exports = {
 
   validateDocumentationLink () {
     I.click(this.locators.documentationLink)
-    I.retry(3).switchToNextTab()
+    I.wait(2)
+    I.retry(5).switchToNextTab()
     I.seeInTitle('DADI Documentation')
     I.closeCurrentTab()
   },
@@ -144,15 +157,13 @@ module.exports = {
     I.scrollTo(this.locators.latestTitle)
     I.seeTextEquals('LATEST FROM DADI', this.locators.latestTitle)
     let count = await I.grabNumberOfVisibleElements(this.locators.latestArticleBoxes)
-    await I.seeNumberOfElementsBetween(count, 200, 6)
-    console.log('\\o/')
-    // I.seeNumberOfVisibleElements(this.locators.latestArticleBoxes, articleBoxes)
-    // I.seeNumberOfVisibleElements(this.locators.latestArticleBoxBadges, 6)
-    // I.seeNumberOfVisibleElements(this.locators.latestArticleBoxTitles, 6)
-    // I.seeNumberOfVisibleElements(this.locators.latestArticleBoxDescs, 6)
-    // I.seeNumberOfVisibleElements(this.locators.latestArticleBoxFooters, 6)
-    // I.seeNumberOfVisibleElements(this.locators.latestArticleBoxDates, 6)
-    // I.seeElement(this.locators.moreArticlesLink)
+    await I.seeNumberOfElementsBetween(count, 1, 6)
+    I.seeNumberOfVisibleElements(this.locators.latestArticleBoxBadges, 6)
+    I.seeNumberOfVisibleElements(this.locators.latestArticleBoxTitles, 6)
+    I.seeNumberOfVisibleElements(this.locators.latestArticleBoxDescs, 6)
+    I.seeNumberOfVisibleElements(this.locators.latestArticleBoxFooters, 6)
+    I.seeNumberOfVisibleElements(this.locators.latestArticleBoxDates, 6)
+    I.seeElement(this.locators.moreArticlesLink)
   },
 
   validateNetworkSection () {
@@ -175,8 +186,72 @@ module.exports = {
     I.seeNumberOfVisibleElements(this.locators.webServicesBoxes, 11)
   },
 
-  validateTwitterSection () {
-    I.scrollTo(this.locators.twitterTitle)
-    I.seeTextEquals('FOLLOW US ON TWITTER @DADI', this.locators.twitterTitle)
+  async validateTwitterSection () {
+    // I.scrollTo(this.locators.twitterTitle)
+    // await I.seeTextEquals('FOLLOW US ON TWITTER @DADI', this.locators.twitterTitle)
+    // let value = await I.grabTextFrom(this.locators.twitterPara)
+    let value = ''
+    console.log('Value: ', typeof value)
+    expect(value).to.equal('x')
+  },
+
+  validateArticleFacebook () {
+    I.scrollTo(this.locators.latestTitle)
+    I.seeTextEquals('LATEST FROM DADI', this.locators.latestTitle)
+    I.click(this.locators.firstArticleBox)
+    I.wait(3)
+    I.scrollTo(this.locators.shareButton)
+    I.click(this.locators.shareButton)
+    I.seeElement(this.locators.shareBox)
+    I.click(this.locators.facebookButton)
+    I.retry(3).switchToNextTab()
+    I.waitForText('Facebook', this.locators.facebookHeader)
+    I.seeTitleEquals('Facebook')
+    I.closeCurrentTab()
+  },
+
+  validateArticleLinkedin () {
+    I.scrollTo(this.locators.latestTitle)
+    I.seeTextEquals('LATEST FROM DADI', this.locators.latestTitle)
+    I.click(this.locators.firstArticleBox)
+    I.wait(3)
+    I.scrollTo(this.locators.shareButton)
+    I.click(this.locators.shareButton)
+    I.seeElement(this.locators.shareBox)
+    I.click(this.locators.linkedinButton)
+    I.retry(3).switchToNextTab()
+    I.waitForElement(this.locators.linkedinLogo)
+    I.seeTitleEquals('Sign Up | LinkedIn')
+    I.closeCurrentTab()
+  },
+
+  validateArticleTwitter () {
+    I.scrollTo(this.locators.latestTitle)
+    I.seeTextEquals('LATEST FROM DADI', this.locators.latestTitle)
+    I.click(this.locators.firstArticleBox)
+    I.wait(3)
+    I.scrollTo(this.locators.shareButton)
+    I.click(this.locators.shareButton)
+    I.seeElement(this.locators.shareBox)
+    I.click(this.locators.twitterButton)
+    I.retry(3).switchToNextTab()
+    I.waitForElement(this.locators.twitterDesc)
+    I.seeTitleEquals('Share a link on Twitter')
+    I.closeCurrentTab()
+  },
+
+  validateArticleReddit () {
+    I.scrollTo(this.locators.latestTitle)
+    I.seeTextEquals('LATEST FROM DADI', this.locators.latestTitle)
+    I.click(this.locators.firstArticleBox)
+    I.wait(3)
+    I.scrollTo(this.locators.shareButton)
+    I.click(this.locators.shareButton)
+    I.seeElement(this.locators.shareBox)
+    I.click(this.locators.redditButton)
+    I.retry(3).switchToNextTab()
+    I.waitForElement(this.locators.redditSignIn)
+    I.seeTitleEquals('reddit.com: Log in')
+    I.closeCurrentTab()
   }
 }

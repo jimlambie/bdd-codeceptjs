@@ -33,7 +33,7 @@ module.exports = {
   },
 
   validatePage () {
-    I.amOnPage('/community')
+    I.amOnPage('/community/?cache=false')
     I.seeTitleEquals('Community | DADI')
   },
 

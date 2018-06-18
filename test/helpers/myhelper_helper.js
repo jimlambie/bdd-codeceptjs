@@ -8,6 +8,10 @@ class MyHelper extends Helper {
     expect(elementCount >= minimum).to.be.true
     expect(elementCount <= maximum).to.be.true
   }
+
+  seeNumberOfElementsAtLeastOne (elementCount, minimum) {
+    expect(elementCount >= minimum).to.be.true
+  }
 }
 
 module.exports = MyHelper
